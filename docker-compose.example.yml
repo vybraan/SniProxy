@@ -1,0 +1,16 @@
+services:
+  proxy:
+    # build: .
+    container_name: proxy
+    image: vybraan/sni-proxy:latest
+    volumes:
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+    environment:
+      REMOTE_HOST: "example.com"
+      SNI_HOST: "facebook.com"
+      REMOTE_USER: "youruser"
+      REMOTE_PORT: "2022"
+      SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}
+    # stdin_open: true # debug 
+    # tty: true # debug
+    restart: always

@@ -17,7 +17,7 @@ The container allows for proxying network traffic over SSH using Server Name Ind
 The following environment variables must be set:
 
 - `REMOTE_HOST`: The SSH host that the proxy will connect to. This can be a remote server running an SSH service.
-- `SNI_HOST`: The SNI (Server Name Indication) host and port to connect to (e.g., a web service or a proxy server).
+- `SNI_HOST`: The SNI (Server Name Indication) host and port to connect to (bughost).
 - `REMOTE_USER`: The SSH username for the remote host.
 - `REMOTE_PORT`: The port number on the remote host (e.g., `2022` for SSH over stunnel).
 - `SSH_AUTH_SOCK`: The socket used by the SSH agent for forwarding the SSH key into the container.
@@ -56,7 +56,7 @@ services:
       - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}  # Forward SSH agent socket
     environment:
       REMOTE_HOST: "example.com"   # SSH host (e.g., a remote server with stunnel)
-      SNI_HOST: "facebook.com:8080"  # SNI Host (e.g., target proxy or service)
+      SNI_HOST: "facebook.com:8080"  # SNI Host
       REMOTE_USER: "myuser"        # SSH Username
       REMOTE_PORT: "2022"          # SSH port (e.g., stunnel over HTTPS)
       SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}  # Forward SSH key
