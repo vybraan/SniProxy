@@ -21,9 +21,8 @@ WORKDIR /work/
 RUN chown -R $USER:$USER /work/sni-injector/.venv 
 RUN chmod -R 755 /work/sni-injector/.venv 
 RUN apt update 
-RUN apt-get install -y python3 python3-pip openssh-client ncat --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN bash -c "source /work/sni-injector/.venv/bin/activate"
-RUN pip install -r /work/sni-injector/requirements.txt 
+RUN apt-get install -y python3 python3-pip openssh-client ncat --no-install-recommends && rm -rf /var/lib/apt/lists/* 
+RUN bash -c "source /work/sni-injector/.venv/bin/activate && pip install -r /work/sni-injector/requirements.txt"
 COPY run.sh .
 COPY config.sh .
 RUN chmod +x run.sh config.sh 
